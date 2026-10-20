@@ -26,7 +26,7 @@ function LoginContent() {
     setLoading(false);
 
     if (res.success) {
-      router.push(redirectUrl);
+      window.location.href = redirectUrl;
     } else {
       setError(res.error || 'Authentication failed. Please verify credentials.');
     }

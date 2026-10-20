@@ -24,7 +24,7 @@ export default function AdminLoginPage() {
     setLoading(false);
 
     if (res.success) {
-      router.push('/admin/dashboard');
+      window.location.href = '/admin/dashboard';
     } else {
       setError(res.error || 'Administrator verification failed.');
     }

@@ -40,15 +40,44 @@ export default function AdminDashboardPage() {
     fetchStats();
   }, []);
 
-  if (loading || !data) {
+  if (loading) {
     return (
-      <div className="py-20 text-center text-xs text-neutral-500 uppercase tracking-widest">
-        Aggregating verified ledger and sales analytics...
+      <div className="py-20 text-center text-xs text-neutral-500 uppercase tracking-widest flex flex-col items-center justify-center space-y-3">
+        <RefreshCw className="w-5 h-5 animate-spin text-[#957856]" />
+        <span>Aggregating verified ledger and sales analytics...</span>
       </div>
     );
   }
 
-  const { metrics, lowStockVariants, bestSellers, recentOrders, salesTrends } = data;
+  if (!data || !data.metrics) {
+    return (
+      <div className="py-20 text-center text-xs text-neutral-500 uppercase tracking-widest space-y-4 max-w-md mx-auto">
+        <AlertTriangle className="w-8 h-8 text-amber-600 mx-auto" />
+        <p className="text-neutral-700">Connecting to secure executive ledger...</p>
+        <button
+          type="button"
+          onClick={fetchStats}
+          className="px-5 py-2.5 bg-black text-white text-xs font-semibold tracking-wider uppercase hover:bg-neutral-800 shadow-sm"
+        >
+          Refresh Ledger
+        </button>
+      </div>
+    );
+  }
+
+  const metrics = data.metrics || {
+    totalSales: 0,
+    totalOrders: 0,
+    pendingOrders: 0,
+    completedOrders: 0,
+    totalCustomers: 0,
+    totalActiveProducts: 0,
+    lowStockCount: 0,
+  };
+  const lowStockVariants = Array.isArray(data.lowStockVariants) ? data.lowStockVariants : [];
+  const bestSellers = Array.isArray(data.bestSellers) ? data.bestSellers : [];
+  const recentOrders = Array.isArray(data.recentOrders) ? data.recentOrders : [];
+  const salesTrends = Array.isArray(data.salesTrends) ? data.salesTrends : [];
 
   const statCards = [
     {
@@ -61,15 +90,15 @@ export default function AdminDashboardPage() {
     },
     {
       label: 'Total Orders',
-      value: metrics.totalOrders,
-      subtext: `${metrics.pendingOrders} pending fulfillment`,
+      value: metrics.totalOrders ?? 0,
+      subtext: `${metrics.pendingOrders ?? 0} pending fulfillment`,
       icon: ShoppingBag,
       color: 'text-neutral-900',
       bgColor: 'bg-neutral-100',
     },
     {
       label: 'Active Garments',
-      value: metrics.totalActiveProducts,
+      value: metrics.totalActiveProducts ?? 0,
       subtext: 'Published on storefront',
       icon: Layers,
       color: 'text-neutral-900',
@@ -77,7 +106,7 @@ export default function AdminDashboardPage() {
     },
     {
       label: 'Client Directory',
-      value: metrics.totalCustomers,
+      value: metrics.totalCustomers ?? 0,
       subtext: 'Registered patrons',
       icon: Users,
       color: 'text-neutral-900',
@@ -85,7 +114,7 @@ export default function AdminDashboardPage() {
     },
     {
       label: 'Low Stock Alerts',
-      value: metrics.lowStockCount,
+      value: metrics.lowStockCount ?? 0,
       subtext: 'Variants ≤ 5 items remaining',
       icon: AlertTriangle,
       color: 'text-amber-700',
@@ -93,7 +122,7 @@ export default function AdminDashboardPage() {
     },
     {
       label: 'Completed Deliveries',
-      value: metrics.completedOrders,
+      value: metrics.completedOrders ?? 0,
       subtext: 'Successfully signed for',
       icon: CheckCircle2,
       color: 'text-emerald-700',
@@ -340,7 +369,7 @@ export default function AdminDashboardPage() {
                   <td className="p-3 text-neutral-500">{formatDate(ord.createdAt)}</td>
                   <td className="p-3 font-medium text-neutral-900">{ord.customerName}</td>
                   <td className="p-3 text-neutral-600">
-                    {ord.items.length} item{ord.items.length > 1 ? 's' : ''} ({ord.items[0]?.productName}...)
+                    {(ord.items?.length || 0)} item{(ord.items?.length || 0) !== 1 ? 's' : ''} {ord.items?.[0] ? `(${ord.items[0].productName})` : ''}
                   </td>
                   <td className="p-3 font-semibold text-black">{formatPrice(ord.total)}</td>
                   <td className="p-3">

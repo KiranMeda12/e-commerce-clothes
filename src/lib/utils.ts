@@ -5,30 +5,37 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(amount: number, currency: string = 'INR'): string {
+export function formatPrice(amount: number | null | undefined, currency: string = 'INR'): string {
+  const val = typeof amount === 'number' && !isNaN(amount) ? amount : 0;
   if (currency === 'INR') {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
       maximumFractionDigits: 0,
-    }).format(amount);
+    }).format(val);
   }
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency,
     maximumFractionDigits: 2,
-  }).format(amount);
+  }).format(val);
 }
 
-export function formatDate(date: string | Date): string {
-  const d = typeof date === 'string' ? new Date(date) : date;
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  }).format(d);
+export function formatDate(date: string | Date | null | undefined): string {
+  if (!date) return '—';
+  try {
+    const d = typeof date === 'string' ? new Date(date) : date;
+    if (isNaN(d.getTime())) return '—';
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(d);
+  } catch {
+    return '—';
+  }
 }
 
 export function generateOrderNumber(): string {
