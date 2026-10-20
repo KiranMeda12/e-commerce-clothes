@@ -66,7 +66,7 @@ export default function Header() {
       {/* Main Sticky Navigation Bar */}
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-[#ECE7DF]' : 'bg-white border-b border-[#ECE7DF]'
+          scrolled ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-sm border-b border-[#DDD4C5]' : 'bg-[#FAF7F2] border-b border-[#DDD4C5]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

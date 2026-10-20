@@ -68,14 +68,14 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
 
   return (
     <div
-      className="group relative flex flex-col p-2.5 sm:p-3 bg-white border border-[#ECE7DF] hover:border-black transition-all duration-300 shadow-2xs hover:shadow-md"
+      className="group relative flex flex-col p-3 bg-white border border-[#DCD2C3] hover:border-[#141312] transition-all duration-300 shadow-xs hover:shadow-lg rounded-xs"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image Container with secondary image crossfade */}
       <Link
         href={`/products/${product.slug}`}
-        className="relative aspect-[3/4] min-h-[280px] sm:min-h-[360px] w-full bg-[#EAE1D5]/40 overflow-hidden block"
+        className="relative aspect-[3/4] min-h-[280px] sm:min-h-[360px] w-full bg-[#EAE2D5] overflow-hidden block border border-[#E0D7C9]"
       >
         {primaryImage ? (
           <>
@@ -103,7 +103,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
             )}
           </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-neutral-300 text-xs">
+          <div className="w-full h-full flex items-center justify-center text-neutral-400 text-xs">
             No Image Available
           </div>
         )}
@@ -111,23 +111,23 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
         {/* Status Badges */}
         <div className="absolute top-3 left-3 flex flex-col space-y-1.5 z-10">
           {isOutOfStock ? (
-            <span className="bg-[#121212]/90 backdrop-blur-xs text-white text-[10px] tracking-widest uppercase px-2 py-1 font-medium">
+            <span className="bg-[#141312] text-neutral-200 text-[10px] tracking-widest uppercase px-2.5 py-1 font-semibold shadow-xs">
               Out of Stock
             </span>
           ) : (
             <>
               {product.isNewArrival && (
-                <span className="bg-white/90 backdrop-blur-xs text-black text-[10px] tracking-luxury uppercase px-2 py-0.5 font-medium border border-neutral-200">
+                <span className="bg-[#141312] text-[#EFE7DC] text-[10px] tracking-luxury uppercase px-2.5 py-1 font-semibold border border-[#CBB499] shadow-xs">
                   New Arrival
                 </span>
               )}
               {product.isBestSeller && !product.isNewArrival && (
-                <span className="bg-[#121212]/90 backdrop-blur-xs text-white text-[10px] tracking-luxury uppercase px-2 py-0.5 font-medium">
+                <span className="bg-[#7A4B27] text-white text-[10px] tracking-luxury uppercase px-2.5 py-1 font-semibold shadow-xs">
                   Best Seller
                 </span>
               )}
               {discountPercentage && (
-                <span className="bg-[#957856] text-white text-[10px] tracking-widest uppercase px-2 py-0.5 font-medium">
+                <span className="bg-[#8A3324] text-white text-[10px] tracking-widest uppercase px-2.5 py-1 font-bold shadow-xs">
                   -{discountPercentage}%
                 </span>
               )}
@@ -145,7 +145,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
                 e.stopPropagation();
                 onQuickView(product);
               }}
-              className="grow bg-white/95 hover:bg-white text-black py-2.5 px-3 text-[11px] uppercase tracking-widest font-medium shadow-md transition-colors flex items-center justify-center space-x-1.5 backdrop-blur-xs"
+              className="grow bg-white/95 hover:bg-white text-black py-2.5 px-3 text-[11px] uppercase tracking-widest font-semibold shadow-md transition-colors flex items-center justify-center space-x-1.5 backdrop-blur-xs border border-neutral-200"
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Quick View</span>
@@ -165,16 +165,16 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       </Link>
 
       {/* Product Information */}
-      <div className="pt-3 pb-2 flex flex-col space-y-1">
+      <div className="pt-3.5 pb-1 flex flex-col space-y-1">
         {product.category && (
-          <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-medium">
+          <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-bold">
             {product.category.name}
           </span>
         )}
 
         <Link
           href={`/products/${product.slug}`}
-          className="text-xs sm:text-sm font-medium text-neutral-900 hover:text-[#957856] transition-colors line-clamp-1"
+          className="text-xs sm:text-sm font-medium text-[#141312] hover:text-[#8C6D4A] transition-colors line-clamp-1"
         >
           {product.name}
         </Link>
@@ -183,7 +183,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
         <div className="flex items-center space-x-2 pt-0.5">
           {product.salePrice ? (
             <>
-              <span className="text-xs sm:text-sm font-semibold text-neutral-900">
+              <span className="text-xs sm:text-sm font-bold text-[#8A3324]">
                 {formatPrice(product.salePrice)}
               </span>
               <span className="text-xs text-neutral-400 line-through">
@@ -191,7 +191,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
               </span>
             </>
           ) : (
-            <span className="text-xs sm:text-sm font-semibold text-neutral-900">
+            <span className="text-xs sm:text-sm font-semibold text-[#141312]">
               {formatPrice(product.price)}
             </span>
           )}

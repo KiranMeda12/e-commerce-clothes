@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-[#FCFBFA] text-[#121212] antialiased selection:bg-[#121212] selection:text-white;
+    @apply bg-[#F5EFEB] text-[#141312] antialiased selection:bg-[#141312] selection:text-[#F5EFEB];
   }
 }
 

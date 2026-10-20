@@ -89,27 +89,37 @@ export default async function HomePage() {
       </section>
 
       {/* 2. VALUE PROPOSITIONS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-8 border-y border-[#ECE7DF] text-center">
-          <div className="flex flex-col items-center space-y-2">
-            <Sparkles className="w-5 h-5 text-[#957856] stroke-[1.5]" />
-            <h3 className="text-xs uppercase tracking-luxury font-medium text-neutral-900">100% Pure Textiles</h3>
-            <p className="text-[11px] text-neutral-500 font-light max-w-xs">Mongolian cashmere, mulberry silk, and European flaxes.</p>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <Truck className="w-5 h-5 text-[#957856] stroke-[1.5]" />
-            <h3 className="text-xs uppercase tracking-luxury font-medium text-neutral-900">Complimentary Courier</h3>
-            <p className="text-[11px] text-neutral-500 font-light max-w-xs">White-glove express insured shipping on orders over ₹2,999.</p>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <RefreshCw className="w-5 h-5 text-[#957856] stroke-[1.5]" />
-            <h3 className="text-xs uppercase tracking-luxury font-medium text-neutral-900">Concierge Returns</h3>
-            <p className="text-[11px] text-neutral-500 font-light max-w-xs">Effortless 7-day pickup and exchange service.</p>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <Shield className="w-5 h-5 text-[#957856] stroke-[1.5]" />
-            <h3 className="text-xs uppercase tracking-luxury font-medium text-neutral-900">Verified Authenticity</h3>
-            <p className="text-[11px] text-neutral-500 font-light max-w-xs">Individually inspected and numbered garment production.</p>
+      <section className="bg-[#EFE9DF] border-y border-[#DDD4C5] py-10 shadow-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-10 h-10 rounded-full bg-white/80 border border-[#DDD4C5] flex items-center justify-center mb-1">
+                <Sparkles className="w-5 h-5 text-[#8C6D4A] stroke-[1.5]" />
+              </div>
+              <h3 className="text-xs uppercase tracking-luxury font-semibold text-neutral-900">100% Pure Textiles</h3>
+              <p className="text-[11px] text-neutral-600 font-normal max-w-xs leading-relaxed">Mongolian cashmere, mulberry silk, and European flaxes.</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-10 h-10 rounded-full bg-white/80 border border-[#DDD4C5] flex items-center justify-center mb-1">
+                <Truck className="w-5 h-5 text-[#8C6D4A] stroke-[1.5]" />
+              </div>
+              <h3 className="text-xs uppercase tracking-luxury font-semibold text-neutral-900">Complimentary Courier</h3>
+              <p className="text-[11px] text-neutral-600 font-normal max-w-xs leading-relaxed">White-glove express insured shipping on orders over ₹2,999.</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-10 h-10 rounded-full bg-white/80 border border-[#DDD4C5] flex items-center justify-center mb-1">
+                <RefreshCw className="w-5 h-5 text-[#8C6D4A] stroke-[1.5]" />
+              </div>
+              <h3 className="text-xs uppercase tracking-luxury font-semibold text-neutral-900">Concierge Returns</h3>
+              <p className="text-[11px] text-neutral-600 font-normal max-w-xs leading-relaxed">Effortless 7-day pickup and exchange service.</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-10 h-10 rounded-full bg-white/80 border border-[#DDD4C5] flex items-center justify-center mb-1">
+                <Shield className="w-5 h-5 text-[#8C6D4A] stroke-[1.5]" />
+              </div>
+              <h3 className="text-xs uppercase tracking-luxury font-semibold text-neutral-900">Verified Authenticity</h3>
+              <p className="text-[11px] text-neutral-600 font-normal max-w-xs leading-relaxed">Individually inspected and numbered garment production.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -135,7 +145,7 @@ export default async function HomePage() {
             <Link
               key={cat.id}
               href={`/shop?category=${cat.slug}`}
-              className="group relative aspect-[4/5] min-h-[280px] sm:min-h-[340px] w-full bg-[#F5F1EB] overflow-hidden"
+              className="group relative aspect-[4/5] min-h-[280px] sm:min-h-[340px] w-full bg-[#EAE2D5] overflow-hidden border border-[#DCD2C3] hover:border-[#141312] shadow-xs hover:shadow-lg transition-all"
             >
               {cat.imageUrl && (
                 <Image
@@ -147,7 +157,7 @@ export default async function HomePage() {
                   className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
               <div className="absolute bottom-6 left-6 text-white space-y-1">
                 <h3 className="font-serif text-xl tracking-wide uppercase font-medium">{cat.name}</h3>
                 <span className="text-[11px] tracking-widest text-[#EAE1D5] uppercase font-light inline-flex items-center group-hover:underline">
@@ -163,7 +173,7 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-8">
           <div>
-            <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-semibold">Signature Edit</span>
+            <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-semibold">Signature Edit</span>
             <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 tracking-wide mt-1">Featured Garments</h2>
           </div>
           <Link
@@ -180,7 +190,7 @@ export default async function HomePage() {
 
       {/* 5. EDITORIAL CAMPAIGN BANNER */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] min-h-[300px] sm:min-h-[420px] w-full bg-[#121212] overflow-hidden">
+        <div className="relative aspect-[16/9] md:aspect-[21/9] min-h-[300px] sm:min-h-[420px] w-full bg-[#121212] overflow-hidden border border-[#DCD2C3] shadow-md">
           <Image
             src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1600&auto=format&fit=crop"
             alt="Monochrome Capsule Campaign"
@@ -202,7 +212,7 @@ export default async function HomePage() {
             <div className="pt-2">
               <Link
                 href="/shop?collection=atelier-minimalist-2026"
-                className="inline-block px-7 py-3 bg-white text-black text-xs uppercase tracking-luxury font-semibold hover:bg-[#EAE1D5] transition-colors"
+                className="inline-block px-7 py-3 bg-white text-black text-xs uppercase tracking-luxury font-semibold hover:bg-[#EAE1D5] transition-colors shadow-lg"
               >
                 Explore The Capsule
               </Link>
@@ -215,7 +225,7 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-8">
           <div>
-            <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-semibold">Fresh From The Atelier</span>
+            <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-semibold">Fresh From The Atelier</span>
             <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 tracking-wide mt-1">New Arrivals</h2>
           </div>
           <Link
@@ -231,15 +241,15 @@ export default async function HomePage() {
       </section>
 
       {/* 7. ATELIER TESTIMONIALS & PRESS */}
-      <section className="bg-[#F5F1EB] py-20 border-y border-[#EAE1D5]">
+      <section className="bg-[#EAE2D5] py-20 border-y border-[#DDD4C5] shadow-xs">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
-          <span className="text-[10px] uppercase tracking-widest text-[#957856] font-semibold">
+          <span className="text-[10px] uppercase tracking-widest text-[#8C6D4A] font-semibold">
             Client Voices & Press
           </span>
           <blockquote className="font-serif text-xl sm:text-2xl text-neutral-900 italic font-light leading-relaxed">
             "The double-faced cashmere overcoat is the most immaculate piece of tailoring I have ever owned. The drape is liquid, and the weight is featherlight yet deeply insulating."
           </blockquote>
-          <div className="text-xs tracking-wider uppercase text-neutral-600 font-medium">
+          <div className="text-xs tracking-wider uppercase text-neutral-700 font-medium">
             — Eleanor Vance, Architectural Designer & Loyal Patron
           </div>
         </div>

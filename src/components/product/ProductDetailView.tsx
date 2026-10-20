@@ -102,10 +102,10 @@ export default function ProductDetailView({
       </nav>
 
       {/* Main Product Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left: Gallery Column */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="relative aspect-[3/4] min-h-[460px] sm:min-h-[580px] w-full bg-[#F5F1EB] overflow-hidden border border-[#ECE7DF]">
+          <div className="relative aspect-[3/4] min-h-[460px] sm:min-h-[580px] w-full bg-[#EAE2D5] overflow-hidden border border-[#DCD2C3] shadow-xs">
             {currentImage && (
               <Image
                 src={currentImage}
@@ -127,10 +127,10 @@ export default function ProductDetailView({
                   key={img.id || idx}
                   type="button"
                   onClick={() => setSelectedImageIndex(idx)}
-                  className={`relative aspect-[3/4] min-h-[80px] border transition-all ${
+                  className={`relative aspect-[3/4] min-h-[80px] bg-[#EAE2D5] border transition-all ${
                     selectedImageIndex === idx
-                      ? 'border-black ring-1 ring-black'
-                      : 'border-transparent opacity-60 hover:opacity-100'
+                      ? 'border-black ring-2 ring-black shadow-sm'
+                      : 'border-[#DCD2C3] opacity-75 hover:opacity-100 hover:border-black'
                   }`}
                 >
                   <Image
@@ -148,10 +148,10 @@ export default function ProductDetailView({
         </div>
 
         {/* Right: Product Buy Actions Column */}
-        <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-          <div className="space-y-3 pb-6 border-b border-[#ECE7DF]">
+        <div className="lg:col-span-5 bg-[#FAF7F2] border border-[#DDD4C5] p-6 sm:p-8 shadow-xs space-y-6 lg:sticky lg:top-28">
+          <div className="space-y-3 pb-6 border-b border-[#DDD4C5]">
             {product.category && (
-              <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-semibold">
+              <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-semibold">
                 {product.category.name}
               </span>
             )}
@@ -170,7 +170,7 @@ export default function ProductDetailView({
                   <span className="text-sm text-neutral-400 line-through">
                     {formatPrice(product.price)}
                   </span>
-                  <span className="text-xs bg-[#957856] text-white px-2 py-0.5 uppercase tracking-widest font-medium">
+                  <span className="text-xs bg-[#8C6D4A] text-white px-2.5 py-0.5 uppercase tracking-widest font-semibold shadow-xs">
                     Special Offer
                   </span>
                 </>
@@ -197,10 +197,10 @@ export default function ProductDetailView({
                       key={c}
                       type="button"
                       onClick={() => setSelectedColor(c)}
-                      className={`px-3 py-2 text-xs border transition-colors flex items-center space-x-2 ${
+                      className={`px-3.5 py-2 text-xs border transition-colors flex items-center space-x-2 shadow-2xs ${
                         initialColor === c
                           ? 'border-black bg-neutral-900 text-white font-medium'
-                          : 'border-[#DFD1BF] text-neutral-800 hover:border-black'
+                          : 'border-[#DDD4C5] bg-white text-neutral-800 hover:border-black'
                       }`}
                     >
                       {colorVar?.colorHex && (
@@ -225,7 +225,7 @@ export default function ProductDetailView({
                 <button
                   type="button"
                   onClick={() => setActiveTab('size')}
-                  className="text-[11px] text-[#957856] underline flex items-center"
+                  className="text-[11px] text-[#8C6D4A] underline flex items-center font-medium"
                 >
                   <Ruler className="w-3 h-3 mr-1" /> Size Guide
                 </button>
@@ -243,12 +243,12 @@ export default function ProductDetailView({
                       type="button"
                       disabled={isSizeOOS}
                       onClick={() => setSelectedSize(s)}
-                      className={`py-2.5 text-xs border text-center transition-all ${
+                      className={`py-2.5 text-xs border text-center transition-all shadow-2xs ${
                         isSizeOOS
-                          ? 'opacity-30 line-through border-neutral-200 cursor-not-allowed bg-neutral-50'
+                          ? 'opacity-30 line-through border-neutral-200 cursor-not-allowed bg-neutral-100'
                           : initialSize === s
                           ? 'border-black bg-black text-white font-semibold'
-                          : 'border-[#DFD1BF] text-neutral-800 hover:border-black'
+                          : 'border-[#DDD4C5] bg-white text-neutral-800 hover:border-black'
                       }`}
                     >
                       {s}
@@ -277,11 +277,11 @@ export default function ProductDetailView({
           {/* Quantity Selector & Purchase Buttons */}
           <div className="space-y-3 pt-4">
             <div className="flex space-x-3">
-              <div className="w-24 border border-neutral-300 flex items-center justify-between px-3">
+              <div className="w-24 border border-[#DDD4C5] bg-white flex items-center justify-between px-3 shadow-2xs">
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="text-neutral-500 hover:text-black py-2"
+                  className="text-neutral-500 hover:text-black py-2 font-medium"
                 >
                   -
                 </button>
@@ -290,7 +290,7 @@ export default function ProductDetailView({
                   type="button"
                   disabled={quantity >= availableStock}
                   onClick={() => setQuantity((q) => Math.min(availableStock, q + 1))}
-                  className="text-neutral-500 hover:text-black py-2 disabled:opacity-30"
+                  className="text-neutral-500 hover:text-black py-2 disabled:opacity-30 font-medium"
                 >
                   +
                 </button>
@@ -300,7 +300,7 @@ export default function ProductDetailView({
                 type="button"
                 disabled={isOutOfStock}
                 onClick={handleAddToCart}
-                className={`grow py-3.5 px-6 text-xs uppercase tracking-luxury font-semibold transition-all flex items-center justify-center space-x-2 ${
+                className={`grow py-3.5 px-6 text-xs uppercase tracking-luxury font-semibold transition-all flex items-center justify-center space-x-2 shadow-xs ${
                   added
                     ? 'bg-emerald-700 text-white'
                     : isOutOfStock
@@ -326,7 +326,7 @@ export default function ProductDetailView({
               <button
                 type="button"
                 onClick={handleBuyNow}
-                className="w-full py-3.5 px-6 border border-black text-black text-xs uppercase tracking-luxury font-semibold hover:bg-black hover:text-white transition-colors"
+                className="w-full py-3.5 px-6 border border-black bg-white text-black text-xs uppercase tracking-luxury font-semibold hover:bg-black hover:text-white transition-colors shadow-xs"
               >
                 Buy Now with Express Checkout
               </button>
@@ -334,17 +334,17 @@ export default function ProductDetailView({
           </div>
 
           {/* Trust Guarantees */}
-          <div className="pt-6 border-t border-[#ECE7DF] space-y-3 text-xs text-neutral-600 font-light">
+          <div className="pt-6 border-t border-[#DDD4C5] space-y-3 text-xs text-neutral-600 font-normal">
             <div className="flex items-center space-x-2.5">
-              <Truck className="w-4 h-4 text-[#957856] shrink-0" />
+              <Truck className="w-4 h-4 text-[#8C6D4A] shrink-0" />
               <span>Complimentary insured shipping on orders over ₹2,999.</span>
             </div>
             <div className="flex items-center space-x-2.5">
-              <RefreshCw className="w-4 h-4 text-[#957856] shrink-0" />
+              <RefreshCw className="w-4 h-4 text-[#8C6D4A] shrink-0" />
               <span>7-day complimentary home pickup exchange policy.</span>
             </div>
             <div className="flex items-center space-x-2.5">
-              <ShieldCheck className="w-4 h-4 text-[#957856] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#8C6D4A] shrink-0" />
               <span>100% certified authentic natural fibers and tailored finish.</span>
             </div>
           </div>
@@ -352,13 +352,13 @@ export default function ProductDetailView({
       </div>
 
       {/* Tabs: Description, Details, Garment Care, Size Guide */}
-      <div className="pt-12 border-t border-[#ECE7DF]">
-        <div className="flex space-x-8 border-b border-[#ECE7DF] text-xs uppercase tracking-luxury">
+      <div className="pt-12 border-t border-[#DDD4C5]">
+        <div className="flex space-x-8 border-b border-[#DDD4C5] text-xs uppercase tracking-luxury">
           <button
             type="button"
             onClick={() => setActiveTab('details')}
             className={`pb-3 font-semibold transition-colors ${
-              activeTab === 'details' ? 'border-b-2 border-black text-black' : 'text-neutral-400 hover:text-black'
+              activeTab === 'details' ? 'border-b-2 border-black text-black' : 'text-neutral-500 hover:text-black'
             }`}
           >
             Design & Construction
@@ -367,7 +367,7 @@ export default function ProductDetailView({
             type="button"
             onClick={() => setActiveTab('care')}
             className={`pb-3 font-semibold transition-colors ${
-              activeTab === 'care' ? 'border-b-2 border-black text-black' : 'text-neutral-400 hover:text-black'
+              activeTab === 'care' ? 'border-b-2 border-black text-black' : 'text-neutral-500 hover:text-black'
             }`}
           >
             Care Instructions
@@ -376,21 +376,21 @@ export default function ProductDetailView({
             type="button"
             onClick={() => setActiveTab('size')}
             className={`pb-3 font-semibold transition-colors ${
-              activeTab === 'size' ? 'border-b-2 border-black text-black' : 'text-neutral-400 hover:text-black'
+              activeTab === 'size' ? 'border-b-2 border-black text-black' : 'text-neutral-500 hover:text-black'
             }`}
           >
             Size & Measurements
           </button>
         </div>
 
-        <div className="py-8 max-w-3xl text-xs sm:text-sm text-neutral-700 leading-relaxed font-light">
+        <div className="my-6 max-w-3xl bg-[#FAF7F2] border border-[#DDD4C5] p-6 sm:p-8 shadow-xs text-xs sm:text-sm text-neutral-800 leading-relaxed font-normal">
           {activeTab === 'details' && (
             <div className="space-y-4">
               <p>{product.description}</p>
               {product.details && (
                 <div className="pt-4 space-y-2">
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-black">Technical Details</h4>
-                  <ul className="list-disc pl-5 space-y-1 text-neutral-600">
+                  <ul className="list-disc pl-5 space-y-1 text-neutral-700">
                     {product.details.split('\n').map((d: string, i: number) => (
                       <li key={i}>{d}</li>
                     ))}
@@ -403,9 +403,9 @@ export default function ProductDetailView({
           {activeTab === 'care' && (
             <div className="space-y-3">
               <p>{product.careGuide || 'Professional dry clean only. Store on contoured hanger in a cool, dry garment bag.'}</p>
-              <div className="p-4 bg-[#FAF8F5] border border-[#EAE1D5] rounded-xs space-y-1">
+              <div className="p-4 bg-white border border-[#DDD4C5] rounded-xs space-y-1">
                 <span className="font-semibold text-black uppercase tracking-wider text-[11px]">Atelier Preservation Note:</span>
-                <p className="text-[11px] text-neutral-600">
+                <p className="text-[11px] text-neutral-700">
                   Allow natural fibers 24 hours of rest between wears to preserve tensile strength and organic garment structure.
                 </p>
               </div>
@@ -416,16 +416,16 @@ export default function ProductDetailView({
             <div className="space-y-4">
               <p>{product.sizeGuide || 'Designed for an intentional, tailored drape. Model is 5\'10" wearing size S.'}</p>
               <div className="overflow-x-auto pt-2">
-                <table className="w-full text-left text-xs border border-neutral-200">
-                  <thead className="bg-[#FAF8F5] border-b border-neutral-200">
+                <table className="w-full text-left text-xs border border-[#DDD4C5] bg-white">
+                  <thead className="bg-[#EFE9DF] border-b border-[#DDD4C5]">
                     <tr>
-                      <th className="p-2.5">Size</th>
-                      <th className="p-2.5">Bust / Chest (in)</th>
-                      <th className="p-2.5">Waist (in)</th>
-                      <th className="p-2.5">Hips (in)</th>
+                      <th className="p-2.5 font-semibold text-neutral-900">Size</th>
+                      <th className="p-2.5 font-semibold text-neutral-900">Bust / Chest (in)</th>
+                      <th className="p-2.5 font-semibold text-neutral-900">Waist (in)</th>
+                      <th className="p-2.5 font-semibold text-neutral-900">Hips (in)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-neutral-100">
+                  <tbody className="divide-y divide-[#DDD4C5]">
                     <tr><td className="p-2.5 font-semibold">XS</td><td className="p-2.5">32-34</td><td className="p-2.5">25-27</td><td className="p-2.5">35-37</td></tr>
                     <tr><td className="p-2.5 font-semibold">S</td><td className="p-2.5">34-36</td><td className="p-2.5">27-29</td><td className="p-2.5">37-39</td></tr>
                     <tr><td className="p-2.5 font-semibold">M</td><td className="p-2.5">36-38</td><td className="p-2.5">29-31</td><td className="p-2.5">39-41</td></tr>
@@ -441,10 +441,10 @@ export default function ProductDetailView({
 
       {/* Related Products */}
       {relatedProducts && relatedProducts.length > 0 && (
-        <section className="pt-12 border-t border-[#ECE7DF]">
+        <section className="pt-12 border-t border-[#DDD4C5]">
           <div className="flex justify-between items-end mb-8">
             <div>
-              <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-semibold">Complementary Pieces</span>
+              <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-semibold">Complementary Pieces</span>
               <h3 className="font-serif text-2xl text-neutral-900 tracking-wide mt-1">Complete The Look</h3>
             </div>
             <Link

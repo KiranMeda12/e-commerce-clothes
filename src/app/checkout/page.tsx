@@ -278,18 +278,18 @@ export default function CheckoutPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left: Customer & Delivery Information Form */}
-        <div className="lg:col-span-7 space-y-8">
-          <form id="checkout-form" onSubmit={handleOrderSubmit} className="space-y-8">
+        <div className="lg:col-span-7 space-y-6">
+          <form id="checkout-form" onSubmit={handleOrderSubmit} className="space-y-6">
             {/* Contact Details */}
-            <div className="space-y-4">
-              <h2 className="font-serif text-xl text-neutral-900 border-b border-[#ECE7DF] pb-3">
+            <div className="bg-[#FAF7F2] border border-[#DDD4C5] p-6 sm:p-8 space-y-4 shadow-xs">
+              <h2 className="font-serif text-xl text-neutral-900 border-b border-[#DDD4C5] pb-3">
                 1. Contact & Customer Details
               </h2>
 
               {!user && (
-                <div className="p-3 bg-[#FAF8F5] border border-[#EAE1D5] text-xs text-neutral-700 flex justify-between items-center">
+                <div className="p-3 bg-white border border-[#DDD4C5] text-xs text-neutral-700 flex justify-between items-center shadow-2xs">
                   <span>Already an Atelier account holder?</span>
                   <Link href="/account/login?redirect=/checkout" className="font-semibold text-black underline">
                     Sign In
@@ -299,7 +299,7 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     Full Legal Name *
                   </label>
                   <input
@@ -308,12 +308,12 @@ export default function CheckoutPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     Mobile Phone Number *
                   </label>
                   <input
@@ -323,13 +323,13 @@ export default function CheckoutPage() {
                     placeholder="+91 98000 00000"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                   Email Address (For Invoicing & Dispatch Alerts) *
                 </label>
                 <input
@@ -338,19 +338,19 @@ export default function CheckoutPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                  className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                 />
               </div>
             </div>
 
             {/* Delivery Address */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-end border-b border-[#ECE7DF] pb-3">
+            <div className="bg-[#FAF7F2] border border-[#DDD4C5] p-6 sm:p-8 space-y-4 shadow-xs">
+              <div className="flex justify-between items-end border-b border-[#DDD4C5] pb-3">
                 <h2 className="font-serif text-xl text-neutral-900">
                   2. Delivery Address
                 </h2>
                 {savedAddresses.length > 0 && (
-                  <span className="text-xs text-neutral-500">Pick from saved address</span>
+                  <span className="text-xs text-neutral-500 font-medium">Pick from saved address</span>
                 )}
               </div>
 
@@ -361,10 +361,10 @@ export default function CheckoutPage() {
                       key={addr.id}
                       type="button"
                       onClick={() => handleSelectAddress(addr)}
-                      className={`p-3 text-left border text-xs transition-colors ${
+                      className={`p-3 text-left border text-xs transition-colors shadow-2xs ${
                         formData.streetAddress === addr.streetAddress
-                          ? 'border-black bg-[#FAF8F5] ring-1 ring-black'
-                          : 'border-neutral-200 hover:border-neutral-400'
+                          ? 'border-black bg-white ring-2 ring-black font-semibold'
+                          : 'border-[#DDD4C5] bg-white hover:border-black'
                       }`}
                     >
                       <p className="font-semibold text-black">{addr.fullName}</p>
@@ -376,7 +376,7 @@ export default function CheckoutPage() {
               )}
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                   Street Address / House / Building *
                 </label>
                 <input
@@ -386,13 +386,13 @@ export default function CheckoutPage() {
                   placeholder="e.g. 42 Palm Avenue"
                   value={formData.streetAddress}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                  className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     Apartment / Suite / Floor (Optional)
                   </label>
                   <input
@@ -401,12 +401,12 @@ export default function CheckoutPage() {
                     placeholder="e.g. Penthouse 7B"
                     value={formData.apartment}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     City *
                   </label>
                   <input
@@ -415,14 +415,14 @@ export default function CheckoutPage() {
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     State *
                   </label>
                   <input
@@ -431,12 +431,12 @@ export default function CheckoutPage() {
                     name="state"
                     value={formData.state}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     Postal PIN Code *
                   </label>
                   <input
@@ -445,25 +445,25 @@ export default function CheckoutPage() {
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
-                    className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                    className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                  <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                     Country
                   </label>
                   <input
                     type="text"
                     disabled
                     value="India"
-                    className="w-full bg-[#FAF8F5] border border-[#DFD1BF] px-3.5 py-2.5 text-xs text-neutral-500"
+                    className="w-full bg-[#EAE2D5] border border-[#DDD4C5] px-3.5 py-2.5 text-xs text-neutral-700 font-medium cursor-not-allowed"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1 font-medium">
                   Optional Delivery / Concierge Instructions
                 </label>
                 <textarea
@@ -472,24 +472,24 @@ export default function CheckoutPage() {
                   placeholder="e.g. Leave with building security concierge or call on arrival"
                   value={formData.deliveryNotes}
                   onChange={handleInputChange}
-                  className="w-full bg-white border border-[#DFD1BF] px-3.5 py-2 text-xs text-neutral-900 focus:outline-none focus:border-black"
+                  className="w-full bg-white border border-[#DDD4C5] px-3.5 py-2 text-xs text-neutral-900 focus:outline-none focus:border-black shadow-2xs"
                 />
               </div>
             </div>
 
             {/* Payment Method */}
-            <div className="space-y-4">
-              <h2 className="font-serif text-xl text-neutral-900 border-b border-[#ECE7DF] pb-3">
+            <div className="bg-[#FAF7F2] border border-[#DDD4C5] p-6 sm:p-8 space-y-4 shadow-xs">
+              <h2 className="font-serif text-xl text-neutral-900 border-b border-[#DDD4C5] pb-3">
                 3. Payment Method
               </h2>
 
               <div className="space-y-3">
                 {/* Razorpay Option */}
                 <label
-                  className={`flex items-start p-4 border cursor-pointer transition-colors ${
+                  className={`flex items-start p-4 border cursor-pointer transition-colors shadow-2xs ${
                     paymentMethod === 'RAZORPAY'
-                      ? 'border-black bg-[#FAF8F5] ring-1 ring-black'
-                      : 'border-neutral-200 hover:border-neutral-300'
+                      ? 'border-black bg-white ring-2 ring-black font-semibold'
+                      : 'border-[#DDD4C5] bg-white hover:border-black'
                   }`}
                 >
                   <input
@@ -506,7 +506,7 @@ export default function CheckoutPage() {
                         Online Payment (Razorpay: UPI, Cards, Netbanking)
                       </span>
                     </div>
-                    <p className="text-[11px] text-neutral-500 font-light">
+                    <p className="text-[11px] text-neutral-600 font-normal">
                       Instant verification with zero transaction charges. 256-bit bank-grade encryption.
                     </p>
                   </div>
@@ -514,10 +514,10 @@ export default function CheckoutPage() {
 
                 {/* Cash on Delivery Option */}
                 <label
-                  className={`flex items-start p-4 border cursor-pointer transition-colors ${
+                  className={`flex items-start p-4 border cursor-pointer transition-colors shadow-2xs ${
                     paymentMethod === 'COD'
-                      ? 'border-black bg-[#FAF8F5] ring-1 ring-black'
-                      : 'border-neutral-200 hover:border-neutral-300'
+                      ? 'border-black bg-white ring-2 ring-black font-semibold'
+                      : 'border-[#DDD4C5] bg-white hover:border-black'
                   }`}
                 >
                   <input
@@ -534,7 +534,7 @@ export default function CheckoutPage() {
                         Cash on Delivery (Pay at Doorstep)
                       </span>
                     </div>
-                    <p className="text-[11px] text-neutral-500 font-light">
+                    <p className="text-[11px] text-neutral-600 font-normal">
                       Pay cash or UPI upon handover by our luxury delivery courier.
                     </p>
                   </div>
@@ -561,12 +561,12 @@ export default function CheckoutPage() {
         </div>
 
         {/* Right: Order Snapshot Sidebar */}
-        <div className="lg:col-span-5 bg-[#FAF8F5] border border-[#ECE7DF] p-6 sm:p-8 space-y-6">
-          <h2 className="font-serif text-xl text-neutral-900 border-b border-[#ECE7DF] pb-3">
+        <div className="lg:col-span-5 bg-[#EFE9DF] border border-[#DDD4C5] p-6 sm:p-8 space-y-6 shadow-sm">
+          <h2 className="font-serif text-xl text-neutral-900 border-b border-[#DDD4C5] pb-3">
             Order Review ({items.length} items)
           </h2>
 
-          <div className="divide-y divide-[#ECE7DF] max-h-80 overflow-y-auto pr-2">
+          <div className="divide-y divide-[#DDD4C5] max-h-80 overflow-y-auto pr-2">
             {items.map((item) => (
               <div key={item.variantId} className="py-3 flex space-x-3 items-center">
                 <div className="relative w-14 h-18 bg-[#F5F1EB] shrink-0 overflow-hidden">
@@ -591,10 +591,10 @@ export default function CheckoutPage() {
             ))}
           </div>
 
-          <div className="space-y-2 text-xs text-neutral-600 pt-4 border-t border-[#EAE1D5]">
+          <div className="space-y-2 text-xs text-neutral-700 pt-4 border-t border-[#DDD4C5]">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>{formatPrice(subtotal)}</span>
+              <span className="font-medium text-black">{formatPrice(subtotal)}</span>
             </div>
             {appliedCoupon && (
               <div className="flex justify-between text-emerald-700">
@@ -604,20 +604,20 @@ export default function CheckoutPage() {
             )}
             <div className="flex justify-between">
               <span>Delivery Fee</span>
-              <span>{shippingFee === 0 ? <strong className="text-black">Complimentary</strong> : formatPrice(shippingFee)}</span>
+              <span>{shippingFee === 0 ? <strong className="text-black font-semibold">Complimentary</strong> : formatPrice(shippingFee)}</span>
             </div>
-            <div className="flex justify-between text-base font-semibold text-neutral-900 pt-3 border-t border-[#EAE1D5]">
+            <div className="flex justify-between text-base font-semibold text-neutral-900 pt-3 border-t border-[#DDD4C5]">
               <span>Final Total</span>
               <span>{formatPrice(total)}</span>
             </div>
           </div>
 
-          <div className="p-3 bg-white border border-[#DFD1BF] rounded-xs space-y-1">
-            <div className="flex items-center space-x-1.5 text-xs text-neutral-800 font-medium">
-              <ShieldCheck className="w-4 h-4 text-[#957856]" />
+          <div className="p-3 bg-white border border-[#DDD4C5] shadow-2xs space-y-1">
+            <div className="flex items-center space-x-1.5 text-xs text-neutral-900 font-semibold">
+              <ShieldCheck className="w-4 h-4 text-[#8C6D4A]" />
               <span>Atelier Guarantee</span>
             </div>
-            <p className="text-[11px] text-neutral-500 font-light">
+            <p className="text-[11px] text-neutral-600 font-normal leading-relaxed">
               Orders are packaged in moisture-sealed protective luxury boxes and insured in full until signed for.
             </p>
           </div>

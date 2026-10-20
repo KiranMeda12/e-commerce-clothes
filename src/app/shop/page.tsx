@@ -99,13 +99,13 @@ function ShopContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      {/* Page Header */}
-      <div className="pb-8 border-b border-[#ECE7DF] flex flex-col md:flex-row md:items-end justify-between gap-4">
+      {/* Page Header Banner */}
+      <div className="bg-[#EFE9DF] border border-[#DDD4C5] p-6 sm:p-8 rounded-xs shadow-xs mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span className="text-[10px] uppercase tracking-luxury text-[#957856] font-semibold">
+          <span className="text-[10px] uppercase tracking-luxury text-[#8C6D4A] font-bold block mb-1">
             {selectedCategory ? `${selectedCategory.toUpperCase()} COLLECTION` : 'THE COMPLETE WARDROBE'}
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl text-neutral-900 tracking-tight mt-1">
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#141312] tracking-tight">
             {searchQuery
               ? `Results for "${searchQuery}"`
               : selectedCollection
@@ -114,82 +114,82 @@ function ShopContent() {
               ? categories.find((c) => c.slug === selectedCategory)?.name || 'Category'
               : 'All Ready-to-Wear'}
           </h1>
-          <p className="text-xs text-neutral-500 font-light mt-1.5">
-            Showing {products.length} refined garment{products.length === 1 ? '' : 's'}
+          <p className="text-xs text-neutral-600 font-light mt-1.5">
+            Showing <strong className="text-black font-semibold">{products.length}</strong> refined garment{products.length === 1 ? '' : 's'} crafted from pure cashmere, silk, and virgin wool.
           </p>
         </div>
 
         {/* Sort & Mobile Filter Trigger */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           <button
             type="button"
             onClick={() => setFilterDrawerOpen(true)}
-            className="lg:hidden flex items-center space-x-2 px-4 py-2 border border-neutral-300 text-xs uppercase tracking-wider font-medium text-neutral-800"
+            className="lg:hidden flex items-center space-x-2 px-4 py-2.5 bg-white border border-[#DDD4C5] text-xs uppercase tracking-wider font-semibold text-neutral-800 shadow-2xs"
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
             <span>Filters {hasActiveFilters && '•'}</span>
           </button>
 
           <div className="relative flex items-center">
-            <span className="text-xs text-neutral-400 mr-2 uppercase tracking-wider hidden sm:inline">Sort:</span>
+            <span className="text-xs text-neutral-500 mr-2 uppercase tracking-wider hidden sm:inline font-medium">Sort:</span>
             <select
               value={selectedSort}
               onChange={(e) => updateFilter('sort', e.target.value)}
-              className="bg-transparent border border-neutral-300 text-xs py-2 pl-3 pr-8 uppercase tracking-wider text-neutral-900 focus:outline-none focus:border-black appearance-none cursor-pointer"
+              className="bg-white border border-[#D5C9B8] text-xs py-2.5 pl-3.5 pr-8 uppercase tracking-wider text-neutral-900 font-semibold focus:outline-none focus:border-black appearance-none cursor-pointer shadow-2xs"
             >
               <option value="newest">Newest Additions</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
               <option value="popular">Most Popular</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 pointer-events-none text-neutral-500" />
+            <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 pointer-events-none text-neutral-600" />
           </div>
         </div>
       </div>
 
       {/* Active Filters Badges */}
       {hasActiveFilters && (
-        <div className="flex flex-wrap items-center gap-2 py-4">
-          <span className="text-xs text-neutral-500">Active filters:</span>
+        <div className="flex flex-wrap items-center gap-2.5 py-3.5 px-4 bg-[#EBE3D7] border border-[#DDD4C5] rounded-xs mb-6">
+          <span className="text-xs font-semibold text-neutral-800">Active filters:</span>
           {selectedCategory && (
             <button
               onClick={() => updateFilter('category', null)}
-              className="inline-flex items-center px-2.5 py-1 bg-[#F5F1EB] text-xs text-neutral-800 hover:bg-[#EAE1D5]"
+              className="inline-flex items-center px-3 py-1 bg-white border border-[#CBBBA8] text-xs font-semibold text-neutral-900 hover:bg-neutral-100 shadow-2xs rounded-xs"
             >
               Category: {selectedCategory}
-              <X className="w-3 h-3 ml-1.5" />
+              <X className="w-3 h-3 ml-1.5 text-neutral-500" />
             </button>
           )}
           {selectedCollection && (
             <button
               onClick={() => updateFilter('collection', null)}
-              className="inline-flex items-center px-2.5 py-1 bg-[#F5F1EB] text-xs text-neutral-800 hover:bg-[#EAE1D5]"
+              className="inline-flex items-center px-3 py-1 bg-white border border-[#CBBBA8] text-xs font-semibold text-neutral-900 hover:bg-neutral-100 shadow-2xs rounded-xs"
             >
               Collection: {selectedCollection}
-              <X className="w-3 h-3 ml-1.5" />
+              <X className="w-3 h-3 ml-1.5 text-neutral-500" />
             </button>
           )}
           {selectedSize && (
             <button
               onClick={() => updateFilter('size', null)}
-              className="inline-flex items-center px-2.5 py-1 bg-[#F5F1EB] text-xs text-neutral-800 hover:bg-[#EAE1D5]"
+              className="inline-flex items-center px-3 py-1 bg-white border border-[#CBBBA8] text-xs font-semibold text-neutral-900 hover:bg-neutral-100 shadow-2xs rounded-xs"
             >
               Size: {selectedSize}
-              <X className="w-3 h-3 ml-1.5" />
+              <X className="w-3 h-3 ml-1.5 text-neutral-500" />
             </button>
           )}
           {searchQuery && (
             <button
               onClick={() => updateFilter('search', null)}
-              className="inline-flex items-center px-2.5 py-1 bg-[#F5F1EB] text-xs text-neutral-800 hover:bg-[#EAE1D5]"
+              className="inline-flex items-center px-3 py-1 bg-white border border-[#CBBBA8] text-xs font-semibold text-neutral-900 hover:bg-neutral-100 shadow-2xs rounded-xs"
             >
               Search: "{searchQuery}"
-              <X className="w-3 h-3 ml-1.5" />
+              <X className="w-3 h-3 ml-1.5 text-neutral-500" />
             </button>
           )}
           <button
             onClick={clearAllFilters}
-            className="text-xs text-neutral-500 hover:text-black underline ml-2"
+            className="text-xs text-neutral-600 hover:text-black underline font-semibold ml-2"
           >
             Clear all
           </button>
@@ -197,20 +197,22 @@ function ShopContent() {
       )}
 
       {/* Layout Grid with Sidebar Filters for Desktop */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 pt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 pt-2">
         {/* Desktop Filter Sidebar */}
-        <aside className="hidden lg:block space-y-8 pr-6 border-r border-[#ECE7DF]">
+        <aside className="hidden lg:block bg-[#EFE9DF] border border-[#DDD4C5] p-6 rounded-xs space-y-8 shadow-xs self-start sticky top-28">
           {/* Categories */}
           <div>
-            <h3 className="text-xs uppercase tracking-luxury text-neutral-900 font-semibold mb-3">
+            <h3 className="text-xs uppercase tracking-luxury text-[#141312] font-bold mb-3 pb-2 border-b border-[#DDD4C5]">
               Categories
             </h3>
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               <button
                 type="button"
                 onClick={() => updateFilter('category', null)}
-                className={`block text-xs tracking-wide text-left transition-colors ${
-                  !selectedCategory ? 'text-black font-semibold' : 'text-neutral-500 hover:text-black'
+                className={`w-full text-xs tracking-wide text-left px-3 py-2 rounded-xs transition-colors ${
+                  !selectedCategory
+                    ? 'bg-[#141312] text-white font-semibold shadow-xs'
+                    : 'text-neutral-700 hover:bg-[#E5DCD0] hover:text-black font-medium'
                 }`}
               >
                 All Ready-to-Wear
@@ -220,8 +222,10 @@ function ShopContent() {
                   key={cat.id}
                   type="button"
                   onClick={() => updateFilter('category', cat.slug)}
-                  className={`block text-xs tracking-wide text-left transition-colors ${
-                    selectedCategory === cat.slug ? 'text-black font-semibold' : 'text-neutral-500 hover:text-black'
+                  className={`w-full text-xs tracking-wide text-left px-3 py-2 rounded-xs transition-colors ${
+                    selectedCategory === cat.slug
+                      ? 'bg-[#141312] text-white font-semibold shadow-xs'
+                      : 'text-neutral-700 hover:bg-[#E5DCD0] hover:text-black font-medium'
                   }`}
                 >
                   {cat.name} ({cat._count?.products || 0})
@@ -233,15 +237,17 @@ function ShopContent() {
           {/* Collections */}
           {collections.length > 0 && (
             <div>
-              <h3 className="text-xs uppercase tracking-luxury text-neutral-900 font-semibold mb-3">
+              <h3 className="text-xs uppercase tracking-luxury text-[#141312] font-bold mb-3 pb-2 border-b border-[#DDD4C5]">
                 Collections
               </h3>
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <button
                   type="button"
                   onClick={() => updateFilter('collection', null)}
-                  className={`block text-xs tracking-wide text-left transition-colors ${
-                    !selectedCollection ? 'text-black font-semibold' : 'text-neutral-500 hover:text-black'
+                  className={`w-full text-xs tracking-wide text-left px-3 py-2 rounded-xs transition-colors ${
+                    !selectedCollection
+                      ? 'bg-[#141312] text-white font-semibold shadow-xs'
+                      : 'text-neutral-700 hover:bg-[#E5DCD0] hover:text-black font-medium'
                   }`}
                 >
                   All Collections
@@ -251,8 +257,10 @@ function ShopContent() {
                     key={col.id}
                     type="button"
                     onClick={() => updateFilter('collection', col.slug)}
-                    className={`block text-xs tracking-wide text-left transition-colors ${
-                      selectedCollection === col.slug ? 'text-black font-semibold' : 'text-neutral-500 hover:text-black'
+                    className={`w-full text-xs tracking-wide text-left px-3 py-2 rounded-xs transition-colors ${
+                      selectedCollection === col.slug
+                        ? 'bg-[#141312] text-white font-semibold shadow-xs'
+                        : 'text-neutral-700 hover:bg-[#E5DCD0] hover:text-black font-medium'
                     }`}
                   >
                     {col.name}
@@ -264,7 +272,7 @@ function ShopContent() {
 
           {/* Size Filter */}
           <div>
-            <h3 className="text-xs uppercase tracking-luxury text-neutral-900 font-semibold mb-3">
+            <h3 className="text-xs uppercase tracking-luxury text-[#141312] font-bold mb-3 pb-2 border-b border-[#DDD4C5]">
               Filter by Size
             </h3>
             <div className="grid grid-cols-3 gap-2">
@@ -273,10 +281,10 @@ function ShopContent() {
                   key={s}
                   type="button"
                   onClick={() => updateFilter('size', selectedSize === s ? null : s)}
-                  className={`py-2 text-xs border text-center transition-colors ${
+                  className={`py-2 text-xs border text-center transition-all rounded-xs font-semibold ${
                     selectedSize === s
-                      ? 'border-black bg-black text-white font-medium'
-                      : 'border-[#DFD1BF] text-neutral-700 hover:border-black'
+                      ? 'border-[#141312] bg-[#141312] text-white shadow-xs'
+                      : 'border-[#D5C9B8] bg-white text-neutral-800 hover:border-black shadow-2xs'
                   }`}
                 >
                   {s}
