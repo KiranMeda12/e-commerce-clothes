@@ -68,18 +68,22 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
 
   return (
     <div
-      className="group relative flex flex-col"
+      className="group relative flex flex-col p-2.5 sm:p-3 bg-white border border-[#ECE7DF] hover:border-black transition-all duration-300 shadow-2xs hover:shadow-md"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image Container with secondary image crossfade */}
-      <Link href={`/products/${product.slug}`} className="relative aspect-3/4 w-full bg-[#F5F1EB] overflow-hidden">
+      <Link
+        href={`/products/${product.slug}`}
+        className="relative aspect-[3/4] min-h-[280px] sm:min-h-[360px] w-full bg-[#EAE1D5]/40 overflow-hidden block"
+      >
         {primaryImage ? (
           <>
             <Image
               src={primaryImage}
               alt={product.name}
               fill
+              unoptimized
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className={`object-cover object-center transition-all duration-700 ease-out ${
                 hovered && secondaryImage !== primaryImage ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
@@ -90,6 +94,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
                 src={secondaryImage}
                 alt={`${product.name} alternate view`}
                 fill
+                unoptimized
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className={`object-cover object-center transition-all duration-700 ease-out absolute inset-0 ${
                   hovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'

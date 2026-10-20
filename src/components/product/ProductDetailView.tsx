@@ -105,13 +105,14 @@ export default function ProductDetailView({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
         {/* Left: Gallery Column */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="relative aspect-3/4 w-full bg-[#F5F1EB] overflow-hidden">
+          <div className="relative aspect-[3/4] min-h-[460px] sm:min-h-[580px] w-full bg-[#F5F1EB] overflow-hidden border border-[#ECE7DF]">
             {currentImage && (
               <Image
                 src={currentImage}
                 alt={product.name}
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover object-center"
               />
@@ -126,7 +127,7 @@ export default function ProductDetailView({
                   key={img.id || idx}
                   type="button"
                   onClick={() => setSelectedImageIndex(idx)}
-                  className={`relative aspect-3/4 border transition-all ${
+                  className={`relative aspect-[3/4] min-h-[80px] border transition-all ${
                     selectedImageIndex === idx
                       ? 'border-black ring-1 ring-black'
                       : 'border-transparent opacity-60 hover:opacity-100'
@@ -136,6 +137,7 @@ export default function ProductDetailView({
                     src={img.url}
                     alt={`${product.name} thumbnail ${idx + 1}`}
                     fill
+                    unoptimized
                     sizes="120px"
                     className="object-cover"
                   />

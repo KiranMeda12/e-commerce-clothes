@@ -292,7 +292,7 @@ function ShopContent() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 py-12">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse space-y-3">
-                  <div className="aspect-3/4 bg-[#EAE1D5]/60" />
+                  <div className="aspect-[3/4] min-h-[280px] bg-[#EAE1D5]/60" />
                   <div className="h-4 bg-[#EAE1D5]/60 w-3/4" />
                   <div className="h-4 bg-[#EAE1D5]/60 w-1/3" />
                 </div>

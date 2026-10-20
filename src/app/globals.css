@@ -29,6 +29,23 @@
   background: #957856;
 }
 
+/* Aspect ratio fallbacks for bulletproof image rendering */
+.aspect-3\/4, .aspect-\[3\/4\] {
+  aspect-ratio: 3 / 4 !important;
+}
+.aspect-4\/5, .aspect-\[4\/5\] {
+  aspect-ratio: 4 / 5 !important;
+}
+.aspect-16\/9, .aspect-\[16\/9\] {
+  aspect-ratio: 16 / 9 !important;
+}
+.aspect-16\/10, .aspect-\[16\/10\] {
+  aspect-ratio: 16 / 10 !important;
+}
+.aspect-21\/9, .aspect-\[21\/9\] {
+  aspect-ratio: 21 / 9 !important;
+}
+
 /* Subtle image zoom transition */
 .image-zoom-container {
   overflow: hidden;

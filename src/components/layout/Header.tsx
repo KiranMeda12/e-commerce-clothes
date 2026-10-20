@@ -104,7 +104,7 @@ export default function Header() {
                 <span className="font-serif text-2xl sm:text-3xl tracking-widest text-[#121212] uppercase font-normal">
                   ATELIER ÉLITE
                 </span>
-                <span className="text-[9px] tracking-[0.35em] text-[#957856] uppercase -mt-1 font-sans">
+                <span className="text-[9px] tracking-[0.3em] text-[#957856] uppercase mt-0.5 font-medium">
                   Haute Couture & Essentials
                 </span>
               </Link>

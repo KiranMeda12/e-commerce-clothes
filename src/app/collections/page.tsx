@@ -39,12 +39,13 @@ export default async function CollectionsPage() {
               idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
             }`}
           >
-            <div className={`lg:col-span-7 relative aspect-16/10 w-full bg-[#F5F1EB] overflow-hidden ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+            <div className={`lg:col-span-7 relative aspect-[16/10] min-h-[280px] sm:min-h-[380px] w-full bg-[#F5F1EB] overflow-hidden ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
               {col.bannerImage && (
                 <Image
                   src={col.bannerImage}
                   alt={col.name}
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover object-center transition-transform duration-700 hover:scale-103"
                 />

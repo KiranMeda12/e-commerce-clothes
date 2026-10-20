@@ -81,12 +81,13 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
           {/* Images Column */}
           <div className="flex flex-col space-y-4">
-            <div className="relative aspect-3/4 w-full bg-[#F5F1EB] overflow-hidden">
+            <div className="relative aspect-[3/4] min-h-[340px] w-full bg-[#F5F1EB] overflow-hidden border border-[#ECE7DF]">
               {currentImage && (
                 <Image
                   src={currentImage}
                   alt={product.name}
                   fill
+                  unoptimized
                   sizes="500px"
                   className="object-cover"
                 />

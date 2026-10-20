@@ -135,13 +135,14 @@ export default async function HomePage() {
             <Link
               key={cat.id}
               href={`/shop?category=${cat.slug}`}
-              className="group relative aspect-4/5 w-full bg-[#F5F1EB] overflow-hidden"
+              className="group relative aspect-[4/5] min-h-[280px] sm:min-h-[340px] w-full bg-[#F5F1EB] overflow-hidden"
             >
               {cat.imageUrl && (
                 <Image
                   src={cat.imageUrl}
                   alt={cat.name}
                   fill
+                  unoptimized
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -179,11 +180,12 @@ export default async function HomePage() {
 
       {/* 5. EDITORIAL CAMPAIGN BANNER */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-16/9 md:aspect-21/9 w-full bg-[#121212] overflow-hidden">
+        <div className="relative aspect-[16/9] md:aspect-[21/9] min-h-[300px] sm:min-h-[420px] w-full bg-[#121212] overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1600&auto=format&fit=crop"
             alt="Monochrome Capsule Campaign"
             fill
+            unoptimized
             sizes="100vw"
             className="object-cover object-center opacity-70"
           />
