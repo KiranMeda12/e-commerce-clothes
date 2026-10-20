@@ -8,41 +8,50 @@ import { ArrowRight, Sparkles, Shield, Truck, RefreshCw } from 'lucide-react';
 export const revalidate = 0; // Dynamic server rendering for fresh inventory
 
 export default async function HomePage() {
-  // Fetch featured products
-  const featuredProducts = await prisma.product.findMany({
-    where: { status: 'PUBLISHED', isFeatured: true },
-    take: 8,
-    include: {
-      images: { orderBy: { displayOrder: 'asc' } },
-      variants: true,
-      category: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  });
+  let featuredProducts: any[] = [];
+  let newArrivals: any[] = [];
+  let collections: any[] = [];
+  let categories: any[] = [];
 
-  // Fetch new arrivals
-  const newArrivals = await prisma.product.findMany({
-    where: { status: 'PUBLISHED', isNewArrival: true },
-    take: 4,
-    include: {
-      images: { orderBy: { displayOrder: 'asc' } },
-      variants: true,
-      category: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  });
+  try {
+    // Fetch featured products
+    featuredProducts = await prisma.product.findMany({
+      where: { status: 'PUBLISHED', isFeatured: true },
+      take: 8,
+      include: {
+        images: { orderBy: { displayOrder: 'asc' } },
+        variants: true,
+        category: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    });
 
-  // Fetch collections
-  const collections = await prisma.collection.findMany({
-    where: { isActive: true },
-    orderBy: { displayOrder: 'asc' },
-    take: 3,
-  });
+    // Fetch new arrivals
+    newArrivals = await prisma.product.findMany({
+      where: { status: 'PUBLISHED', isNewArrival: true },
+      take: 4,
+      include: {
+        images: { orderBy: { displayOrder: 'asc' } },
+        variants: true,
+        category: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    });
 
-  // Fetch categories
-  const categories = await prisma.category.findMany({
-    take: 4,
-  });
+    // Fetch collections
+    collections = await prisma.collection.findMany({
+      where: { isActive: true },
+      orderBy: { displayOrder: 'asc' },
+      take: 3,
+    });
+
+    // Fetch categories
+    categories = await prisma.category.findMany({
+      take: 4,
+    });
+  } catch (err) {
+    console.error('Graceful degradation on homepage fetch:', err);
+  }
 
   return (
     <div className="space-y-20 sm:space-y-28 pb-20">

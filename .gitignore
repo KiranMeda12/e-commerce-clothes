@@ -27,8 +27,8 @@ yarn-error.log*
 .env*.local
 
 # SQLite database files
-dev.db
-dev.db-journal
+/dev.db
+*.db-journal
 
 # typescript
 *.tsbuildinfo

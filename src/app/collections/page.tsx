@@ -7,15 +7,20 @@ import { ArrowRight } from 'lucide-react';
 export const revalidate = 0;
 
 export default async function CollectionsPage() {
-  const collections = await prisma.collection.findMany({
-    where: { isActive: true },
-    orderBy: { displayOrder: 'asc' },
-    include: {
-      _count: {
-        select: { products: { where: { status: 'PUBLISHED' } } },
+  let collections: any[] = [];
+  try {
+    collections = await prisma.collection.findMany({
+      where: { isActive: true },
+      orderBy: { displayOrder: 'asc' },
+      include: {
+        _count: {
+          select: { products: { where: { status: 'PUBLISHED' } } },
+        },
       },
-    },
-  });
+    });
+  } catch (err) {
+    console.error('Graceful degradation on collections fetch:', err);
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
