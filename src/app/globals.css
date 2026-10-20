@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "Didot", "Bodoni MT", "Cinzel", "Playfair Display", Georgia, serif;
+  }
+
+  body {
+    @apply bg-[#FCFBFA] text-[#121212] antialiased selection:bg-[#121212] selection:text-white;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F1EB;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBB499;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #957856;
+}
+
+/* Subtle image zoom transition */
+.image-zoom-container {
+  overflow: hidden;
+}
+.image-zoom-container img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-zoom-container:hover img {
+  transform: scale(1.05);
+}
